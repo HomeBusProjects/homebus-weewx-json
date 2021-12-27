@@ -57,6 +57,11 @@ class WeeWXJSONHomebusApp < Homebus::App
     (temp - 32) * 5 / 9
   end
 
+  # inches of mercury converted to hectopascals
+  def inhg_to_hpa(inh)
+    inh*33.86
+  end
+
   def work!
     weather = _get_data
 
@@ -70,7 +75,7 @@ class WeeWXJSONHomebusApp < Homebus::App
       payload = {
         temperature: ("%0.2f" % F_to_C(weather[:current][:temperature][:value])).to_f,
         humidity:  weather[:current][:humidity][:value],
-        pressure: weather[:current][:barometer][:value],
+        pressure: ("%f" % inhg_to_hpa(weather[:current][:barometer][:value])),
         wind: weather[:current]['wind speed'.to_sym][:value],
         rain: weather[:current]['rain rate'.to_sym][:value],
         visibility: nil,
