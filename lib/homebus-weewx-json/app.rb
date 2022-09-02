@@ -46,7 +46,7 @@ class HomebusWeewxJson::App < Homebus::App
       return weather
     rescue => error
       if @options[:verbose]
-        puts "exception fetching weather URL #{uri.to_s}: #{e.message}"
+        puts "exception fetching weather URL #{uri.to_s}: #{error.message}"
       end
 
       return nil
