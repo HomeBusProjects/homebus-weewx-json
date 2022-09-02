@@ -1,6 +1,8 @@
 require 'homebus/options'
 
-class WeeWXJSONHomebusAppOptions < Homebus::Options
+require 'homebus-weewx-json/version'
+
+class HomebusWeewxJson::Options < Homebus::Options
   def app_options(op)
     url_help = 'the URL of the weather station\'s JSON report'
 
@@ -13,7 +15,7 @@ class WeeWXJSONHomebusAppOptions < Homebus::Options
   end
 
   def version
-    '0.0.1'
+    HomebusWeewxJson::VERSION
   end
 
   def name

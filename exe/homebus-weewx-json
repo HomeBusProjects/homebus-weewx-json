@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require 'homebus-weewx-json/options'
+require 'homebus-weewx-json/app'
+
+options = HomebusWeewxJson::Options.new
+app = HomebusWeewxJson::App.new(options.options)
+app.run!
+

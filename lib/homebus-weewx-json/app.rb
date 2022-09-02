@@ -7,7 +7,7 @@ require 'dotenv'
 require 'net/http'
 require 'json'
 
-class WeeWXJSONHomebusApp < Homebus::App
+class HomebusWeewxJson::App < Homebus::App
   DDC_AIR_SENSOR   = 'org.homebus.experimental.air-sensor'
   DDC_RAIN_SENSOR  = 'org.homebus.experimental.rain-sensor'
   DDC_WIND_SENSOR  = 'org.homebus.experimental.wind-sensor'
@@ -74,8 +74,8 @@ class WeeWXJSONHomebusApp < Homebus::App
 
       payload = {
         temperature: ("%0.2f" % F_to_C(weather[:current][:temperature][:value])).to_f,
-        humidity:  weather[:current][:humidity][:value],
-        pressure: ("%f" % inhg_to_hpa(weather[:current][:barometer][:value])),
+        humidity:  weather[:current][:humidity][:value].to_f,
+        pressure: ("%f" % inhg_to_hpa(weather[:current][:barometer][:value])).to_f,
         wind: weather[:current]['wind speed'.to_sym][:value],
         rain: weather[:current]['rain rate'.to_sym][:value],
         visibility: nil,
